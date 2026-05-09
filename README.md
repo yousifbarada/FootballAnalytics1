@@ -65,3 +65,4 @@ FOOTBALL_ANALYSIS/
 ├── main.py                         # The main execution script
 ├── README.md                       # Project documentation
 └── yolo_inference.py               # Inference script for testing YOLO model# FootballAnalytics1
+# FootballAnalytics1
