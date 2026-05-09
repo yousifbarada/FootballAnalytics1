@@ -1,30 +1,67 @@
-# Football Analysis Project
+# AI-Powered Football Tactical Analysis System
 
-## Introduction
-The goal of this project is to detect and track players, referees, and footballs in a video using YOLO, one of the best AI object detection models available. We will also train the model to improve its performance. Additionally, we will assign players to teams based on the colors of their t-shirts using Kmeans for pixel segmentation and clustering. With this information, we can measure a team's ball acquisition percentage in a match. We will also use optical flow to measure camera movement between frames, enabling us to accurately measure a player's movement. Furthermore, we will implement perspective transformation to represent the scene's depth and perspective, allowing us to measure a player's movement in meters rather than pixels. Finally, we will calculate a player's speed and the distance covered. This project covers various concepts and addresses real-world problems, making it suitable for both beginners and experienced machine learning engineers.
+An advanced Computer Vision and Machine Learning pipeline designed to extract tactical insights, player statistics, and match analysis directly from raw football match footage. 
 
-![Screenshot](output_videos/screenshot.png)
+This project builds upon basic object detection by introducing high-level tactical analytics, such as formation detection, press intensity analysis, and build-up phase tracking.
 
-## Modules Used
-The following modules are used in this project:
-- YOLO: AI object detection model
-- Kmeans: Pixel segmentation and clustering to detect t-shirt color
-- Optical Flow: Measure camera movement
-- Perspective Transformation: Represent scene depth and perspective
-- Speed and distance calculation per player
+---
 
-## Trained Models
-- [Trained Yolo v5](https://drive.google.com/file/d/1DC2kCygbBWUKheQ_9cFziCsYVSRw6axK/view?usp=sharing)
+## Demo
+*(Tip: Add a GIF or a screenshot of your output_video2.avi here to show off the results)*
+![Demo Screenshot](/teamspace/studios/this_studio/input_videos/Screenshot 2026-05-09 065415.png)
 
-## Sample video
--  [Sample input video](https://drive.google.com/file/d/1t6agoqggZKx6thamUuPAIdN_1zR9v9S_/view?usp=sharing)
+---
 
-## Requirements
-To run this project, you need to have the following requirements installed:
-- Python 3.x
-- ultralytics
-- supervision
-- OpenCV
-- NumPy
-- Matplotlib
-- Pandas
+## Key Features
+
+### Advanced Tactical Analytics (Custom Built)
+* **Formation Detector:** Dynamically identifies and classifies team formations (e.g., 4-3-3, 4-4-2) based on the spatial distribution of players across defense, midfield, and attack lines.
+* **Press Intensity Analyzer:** Quantifies the defensive pressure applied to the ball carrier, calculating a "Press Intensity" percentage for each team.
+* **Build-up Analyzer:** Segments the pitch into tactical zones (Defense, Midfield, Attack) and tracks where a team spends their possession time, calculating phase success rates.
+* **Progressive Pass Detector:** Identifies and flags line-breaking and progressive passes.
+
+### Core Vision & Tracking
+* **Multi-Object Tracking:** Robust tracking of players, referees, and the ball using custom-trained YOLO models and ByteTrack.
+* **Camera Movement Estimation:** Calculates and compensates for camera panning and zooming using Optical Flow to ensure precise real-world physics calculations.
+* **Perspective Transformation (View Transformer):** Converts 2D pixel coordinates from the camera's perspective into a top-down 2D pitch view using homography matrices.
+* **Automatic Team Assignment:** Uses K-Means clustering to automatically group players into teams based on their dominant jersey colors.
+* **Ball Possession System:** Calculates distance between player bounding boxes and the ball to dynamically assign possession and track overall team possession percentages.
+* **Speed & Distance Estimation:** Translates pixel movement to real-world meters to calculate total distance covered and current running speed (km/h) for every player.
+
+---
+
+## Tech Stack
+* **Python 3.x**
+* **YOLO (Ultralytics):** For object detection (Players, Referees, Ball).
+* **OpenCV:** For video processing, perspective transformation, and drawing annotations.
+* **ByteTrack (Supervision):** For consistent multi-object tracking across frames.
+* **Scikit-Learn:** For K-Means clustering (Team color assignment).
+* **Pandas & NumPy:** For data interpolation and mathematical calculations.
+
+---
+
+## Project Structure
+
+```text
+FOOTBALL_ANALYSIS/
+├── __pycache__/
+├── Bildupanalyzer/                 # Custom tactical module: Build-up phases
+├── camera_movement_estimator/      # Optical flow logic to adjust bounding boxes
+├── development_and_analysis/       # Notebooks for development and testing
+├── input_videos/                   # Place your raw match footage here
+├── models/                         # Custom trained YOLO weights (e.g., players.pt)
+├── output_videos/                  # Annotated output videos are saved here
+├── player_ball_assigner/           # Logic to assign the ball to the closest player
+├── PressIntensityAnalyzer/         # Custom tactical module: Pressing metrics
+├── ProgressPassD/                  # Custom tactical module: Progressive pass detection
+├── speed_and_distance_estimator/   # Real-world physics calculations
+├── stubs/                          # Pickled data to save processing time
+├── team_assigner/                  # K-Means clustering logic for jersey colors
+├── trackers/                       # YOLO tracking logic
+├── training/                       # Scripts and notebooks for training custom models
+├── utils/                          # Helper functions for video I/O and bounding box math
+├── view_transformer/               # Perspective transformation logic
+├── .gitignore                      # Ignored files and directories for Git
+├── main.py                         # The main execution script
+├── README.md                       # Project documentation
+└── yolo_inference.py               # Inference script for testing YOLO model
