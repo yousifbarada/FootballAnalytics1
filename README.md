@@ -7,8 +7,7 @@ This project builds upon basic object detection by introducing high-level tactic
 ---
 
 ## Demo
-![Demo Screenshot]("assets/demo.png")
-
+![Demo Screenshot](assets/demo.png)
 ---
 
 ## Key Features
