@@ -7,8 +7,7 @@ This project builds upon basic object detection by introducing high-level tactic
 ---
 
 ## Demo
-*(Tip: Add a GIF or a screenshot of your output_video2.avi here to show off the results)*
-![Demo Screenshot](/teamspace/studios/this_studio/input_videos/Screenshot 2026-05-09 065415.png)
+![Demo Screenshot]("asserts/demo.png")
 
 ---
 
