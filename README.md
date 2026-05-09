@@ -64,4 +64,4 @@ FOOTBALL_ANALYSIS/
 ├── .gitignore                      # Ignored files and directories for Git
 ├── main.py                         # The main execution script
 ├── README.md                       # Project documentation
-└── yolo_inference.py               # Inference script for testing YOLO model
+└── yolo_inference.py               # Inference script for testing YOLO model# FootballAnalytics1
